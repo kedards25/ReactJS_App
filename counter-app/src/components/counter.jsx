@@ -1,14 +1,28 @@
 import React, { Component } from "react";
 class Counter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      openDrawer: "false"
-    };
+  state = {
+    count: 0
+  };
+
+  styles = {
+    fontStyle: "italic"
+  };
+  render() {
+    let classes = "badge m-2 badge-";
+    classes += this.state.count === 0 ? "warning" : "primary";
+    return (
+      <div>
+        <span style={this.styles} className={classes}>
+          {this.formatCount()}
+        </span>
+        <button class="btn btn-secondary">Add 1</button>
+      </div>
+    );
   }
 
-  render() {
-    return <h1>Hello World {this.state.openDrawer}</h1>;
+  formatCount() {
+    const { count } = this.state;
+    return count === 0 ? <h5>Zero</h5> : count;
   }
 }
 
